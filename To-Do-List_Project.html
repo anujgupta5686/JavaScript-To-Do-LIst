@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Document</title>
+    <style>
+        #newtask{
+    position: relative;
+    padding: 30px 20px;
+}
+*,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background: #e86ac0;
+}
+.container{
+    width: 40%;
+    top: 50%;
+    left: 50%;
+    background: white;
+    border-radius: 10px;
+    min-width: 450px;
+    position: absolute;
+    min-height: 100px;
+    transform: translate(-50%,-50%);
+}
+
+#newtask input{
+    width: 90%;
+    height: 45px;
+    padding: 12px;
+    color: #111111;
+    font-weight: 500;
+    position: relative;
+    border-radius: 5px;
+    font-family: 'Poppins',sans-serif;
+    font-size: 15px;
+    border: 2px solid #d1d3d4;
+    margin-top:13px;
+}
+
+#newtask input:focus{
+    outline: none;
+    border-color: #0d75ec;
+    background-color: rgba(111, 168, 232,0.2);
+}
+#newtask button{
+    position: relative;
+    float: right;
+    font-weight: 500;
+    background-color: #e86ac0;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    width: 8%;
+    height: 45px;
+    border-radius: 5px;
+    font-family: 'Poppins',sans-serif;
+    margin-top:13px;
+}
+#newtask button i{
+    background-color:#e86ac0;
+    font-size: 25px;
+}
+
+#tasks{
+    border-radius: 10px;
+    width: 100%;
+    position: relative;
+    background-color: #ffffff;
+    padding: 30px 20px;
+    margin-top: 10px;
+}
+
+.task{
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    border: 1px solid #939697;
+    cursor: pointer;
+    background-color: rgba(137, 20, 100,0.2);
+    height: auto;
+    margin-bottom: 8px;
+    padding: 5px 10px;
+    
+    
+}
+
+.task span{
+
+    font-family: 'Poppins',sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    
+}
+.task button{
+    background-color: #0a2ea4;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    height: 100%;
+    width: 40px;
+    border-radius: 5px;
+}
+.head1{
+    position: absolute;
+    top:0px;
+    left:37%;
+    padding-left:5px;
+    padding-right:5px;
+    font-weight: 600;
+    color:#e86ac0;
+    font-size: 25px;
+    text-align: center;
+    border-left:5px solid #e86ac0;
+    margin-top:5px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="head1">TODO LIST</h1>    
+    <div id="newtask">
+        <input type="text" placeholder="SET YOUR TODO WORK....">
+        <button id="push"><i class="fa-solid fa-circle-plus"></i></button>
+    </div>
+    <div id="tasks"></div>
+</div>
+
+
+<script>
+    document.querySelector('#push').onclick = function(){
+    if(document.querySelector('#newtask input').value.length == 0){
+        alert("Please Enter a Task")
+    }
+
+    else{
+        document.querySelector('#tasks').innerHTML += `
+            <div class="task">
+                <span id="taskname">
+                    ${document.querySelector('#newtask input').value}
+                </span>
+                <button class="delete" style="background-color:transparent;">
+                    <i class="fa-solid fa-trash-can" style="font-size:20px; color:red;"></i>
+                </button>
+            </div>
+        `;
+
+        var current_tasks = document.querySelectorAll(".delete");
+        for(var i=0; i<current_tasks.length; i++){
+            current_tasks[i].onclick = function(){
+                this.parentNode.remove();
+            }
+        }
+    }
+}
+
+</script>
+    
+</body>
+</html>
